@@ -12,7 +12,7 @@ namespace DataAccess.Persistence
 
         public ILanguageRepository Language { get; private set; }
         public ITradeRepository Trade { get; private set; }
-
+        public ISyllebusRepository Syllebus { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -21,6 +21,7 @@ namespace DataAccess.Persistence
 
             Language = new LanguageRepository(_context);
             Trade = new TradeRepository(_context);
+            Syllebus = new SyllebusRepository(_context);
         }
 
 

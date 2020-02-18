@@ -4,14 +4,16 @@ using DataAccess.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200218090054_added syllebus and documents model fix")]
+    partial class addedsyllebusanddocumentsmodelfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,21 +119,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Syllebuses");
                 });
 
-            modelBuilder.Entity("DataAccess.Domain.SyllebusLanguage", b =>
-                {
-                    b.Property<int>("SyllebusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SyllebusId", "LanguageId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("SyllebusLanguage");
-                });
-
             modelBuilder.Entity("DataAccess.Domain.Trade", b =>
                 {
                     b.Property<int>("Id")
@@ -181,21 +168,6 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Domain.Trade", "Trade")
                         .WithMany()
                         .HasForeignKey("TradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DataAccess.Domain.SyllebusLanguage", b =>
-                {
-                    b.HasOne("DataAccess.Domain.Language", "Language")
-                        .WithMany("Syllebuses")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Domain.Syllebus", "Syllebus")
-                        .WithMany("Languages")
-                        .HasForeignKey("SyllebusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

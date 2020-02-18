@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DataAccess.Domain
 {
@@ -7,12 +8,12 @@ namespace DataAccess.Domain
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<TradeLevel> Trades { get; set; }
+        public ICollection<TradeLevel> Trades { get; set; }
 
 
         public Level()
         {
-            Trades = new HashSet<TradeLevel>();
+            Trades = new Collection<TradeLevel>();
         }
     }
 }

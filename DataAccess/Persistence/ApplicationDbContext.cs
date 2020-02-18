@@ -9,6 +9,8 @@ namespace DataAccess.Persistence
         public virtual DbSet<Language> Languages { get; set; }
         public virtual DbSet<Trade> Trades { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<Syllebus> Syllebuses { get; set; }
+        public virtual DbSet<Documents> Documents { get; set; }
 
 
 
@@ -22,6 +24,7 @@ namespace DataAccess.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TradeLevel>().HasKey(tl => new { tl.TradeId, tl.LevelId });
+            modelBuilder.Entity<SyllebusLanguage>().HasKey(sl => new { sl.SyllebusId, sl.LanguageId });
         }
        
     }

@@ -8,6 +8,7 @@ namespace DataAccess
     {
         ILanguageRepository Language { get; }
         ITradeRepository Trade { get; }
+        ISyllebusRepository Syllebus { get; }
 
         int Complete();
 

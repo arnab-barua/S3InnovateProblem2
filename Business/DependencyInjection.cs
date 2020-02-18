@@ -18,6 +18,7 @@ namespace Business
 
             services.AddScoped<ILanguageManager, LanguageManager>();
             services.AddScoped<ITradeManager, TradeManager>();
+            services.AddScoped<ISyllebusManager, SyllebusManager>();
 
             return services;
         }

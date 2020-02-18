@@ -23,7 +23,10 @@ namespace DataAccess.Persistence.Implementation
 
         public async Task<IEnumerable<Trade>> LoadRelatedLevelsAsync()
         {
-            var data = await Context.Trades.Include(a => a.Levels).ThenInclude(t => t.Select(a => a.Level.Name)).ToListAsync();
+            var data = await Context.Trades
+                .Include(a => a.Levels)
+                    .ThenInclude(l => l.Level)
+                .ToListAsync();
             return data;
         }
     }

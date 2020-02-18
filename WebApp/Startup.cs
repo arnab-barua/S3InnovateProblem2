@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Business;
+using Microsoft.OpenApi.Models;
 
 namespace WebApp
 {
@@ -27,6 +28,11 @@ namespace WebApp
             var connection = Configuration.GetConnectionString("DatabaseConnection");
             services.AddBusinessLayer(connection);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "S3 Innovate Problem 2", Version = "v1" });
+            });
+
 
             services.AddControllersWithViews().AddNewtonsoftJson();
             // In production, the Angular files will be served from this directory
@@ -47,6 +53,12 @@ namespace WebApp
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "S3 Innovate Problem 2 V1");
+            });
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())

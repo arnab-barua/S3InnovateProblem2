@@ -9,7 +9,7 @@ namespace DataAccess.Domain
         public int TradeId { get; set; }
         public int LevelId { get; set; }
 
-        public virtual Trade Trade { get; set; }
-        public virtual Level Level { get; set; }
+        public Trade Trade { get; set; }
+        public Level Level { get; set; }
     }
 }
