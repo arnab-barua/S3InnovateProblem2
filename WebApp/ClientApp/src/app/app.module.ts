@@ -1,32 +1,49 @@
+import { GridPaginationComponent } from './components/grid-pagination/grid-pagination.component';
+import { AppRoutingModule } from './app-routing,module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListViewComponent } from './components/list-view/list-view.component';
+import { CreateComponent } from './components/create/create.component';
+import { CustomLinkRendererComponent } from './components/custom-link-renderer/custom-link-renderer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    ListViewComponent,
+	CreateComponent,
+	GridPaginationComponent,
+	CustomLinkRendererComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+	BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+	AgGridModule.withComponents([
+		CustomLinkRendererComponent
+	]),
+	NgxDatatableModule,
     HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+	FormsModule,
+	BrowserAnimationsModule,
+    AppRoutingModule,
+	BsDatepickerModule.forRoot(),
+	ToastrModule.forRoot({
+		timeOut: 5000,
+		positionClass: 'toast-center-center',
+		preventDuplicates: true,
+		closeButton: true,
+		enableHtml: true
+	})
   ],
   providers: [],
   bootstrap: [AppComponent]
